@@ -1,0 +1,22 @@
+version: 2
+sources:
+  - name: CUSTOMER_REALTIONSHIP_TEST
+    description: To perform the various test on customer table
+    database: MIGRATION_DB
+    schema: STAGE_SCHEMA
+    tables:
+      - name: CUSTOMER_TARGET
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: MIGRATION_DB.DEMO_SCHEMA.CUSTOMER_STAGE
+          - dbt_utils.equality:
+              compare_model: MIGRATION_DB.DEMO_SCHEMA.CUSTOMER_STAGE 
+        # columns:             
+        #   - name: ID
+        #     description: customer key
+        #     tests:
+        #       - relationships:
+        #           to: MIGRATION_DB.DEMO_SCHEMA.CUSTOMER_STAGE
+        #           field: ID
+

@@ -1,0 +1,117 @@
+version: 2
+sources:
+  - name: CUSTOMER_TEST
+    description: To perform the various test on customer table
+    database: MIGRATION_DB
+    schema: DEMO_SCHEMA
+    tables:
+      - name: CUSTOMER
+        description: table_test
+        tests:
+          #1 Expects column count to between the given range
+          - dbt_expectations.expect_table_column_count_to_be_between:
+              min_value: 1 
+              max_value: 10
+          #2 Expects column count to be equal to other table
+          - dbt_expectations.expect_table_column_count_to_equal_other_table:
+              compare_model: MIGRATION_DB.STAGE_SCHEMA.NATION
+          #3 Expects column values not to contain in the set
+          - dbt_expectations.expect_table_columns_to_not_contain_set:
+              column_list: ["age", "amount"]
+            #  transform: upper # (Optional)
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["C_ADDRESS","C_PHONE"]
+            #5 Expects column count to be equal to given value
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 10
+            #6 Expects column values to be in the same order as in the set
+          - dbt_expectations.expect_table_columns_to_match_ordered_list:
+              column_list: ["C_CUSTKEY", "C_NAME","C_ADDRESS","C_PHONE","C_NATIONKEY","C_ACCTBAL","C_MKTSEGMENT","C_COMMENT","DATE_TIME","PINCODE"]
+            #7 Expects column values should contain the set
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list: ["C_CUSTKEY", "C_NAME","C_ADDRESS","C_PHONE","C_NATIONKEY","C_ACCTBAL","C_MKTSEGMENT","C_COMMENT","DATE_TIME","PINCODE"]
+            #8 Expects row count value should be in the given range
+          - dbt_expectations.expect_table_row_count_to_be_between:
+              min_value: 1 
+              max_value: 150001
+            #9 Expects row count value should be equal to other table
+          - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: MIGRATION_DB.STAGE_SCHEMA.CUSTOMERS
+            #10 Expects row count value should be equal to given value
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 150001
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: count(C_ACCTBAL)
+              compare_model: MIGRATION_DB.STAGE_SCHEMA.CUSTOMERS
+#---------------------------------------------------------------------------------------------------------------------------------------             
+        columns:             
+          - name: C_CUSTKEY
+            description: customer key
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              #unique value test
+              - unique
+              - dbt_expectations.expect_column_values_to_be_unique
+              #not null test
+              - dbt_expectations.expect_column_values_to_not_be_null
+              #data type test
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: NUMBER
+              # Expects column values to be between the specified range
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 1  
+                  max_value: 150001
+              # Expects column values to be in increasing order
+              - dbt_expectations.expect_column_values_to_be_increasing
+                  #sort_column: C_NATIONKEY
+          - name: C_NAME
+            description: customer name
+            tests:
+              - unique
+              - not_null
+            #  - dbt_expectations.expect_column_values_to_be_null
+              # Expect column value length should be in between gien range
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  min_value: 1 
+                  max_value: 18
+              # Expect column value length should be equa to specifie value
+              - dbt_expectations.expect_column_value_lengths_to_equal:
+                  value: 18
+              # Expect column to match the given pattern
+              - dbt_expectations.expect_column_values_to_match_regex:
+                  regex: "Customer+"
+          - name: PINCODE
+            description: PINCODE
+            tests:
+              - dbt_expectations.expect_column_values_to_be_null
+              - dbt_expectations.expect_column_values_to_be_in_type_list:
+                  column_type_list: [integer, int36]
+          - name: C_MKTSEGMENT
+            description: Customer address
+            tests:
+             #Expect column contain only uppercase or Lowercase
+              - dbt_expectations.expect_column_values_to_have_consistent_casing
+            # Expect column values to be in the set
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: ['AUTOMOBILE','MACHINERY','HOUSEHOLD','BUILDING','FURNITURE','Household']
+          - name: C_NATIONKEY
+            description: Nation key
+            tests:
+              - dbt_expectations.expect_column_max_to_be_between:
+                  min_value: 9
+                  max_value: 24 
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  min_value: 1 
+                  max_value: 1801004
+            #  - even
+          - name: C_ACCTBAL
+            description: Account Balance
+            tests:
+              - positive
+          - name: DATE_TIME
+            description: LOADED DATE
+            tests:
+              # It checks how recent the data is 
+              - dbt_expectations.expect_row_values_to_have_recent_data:
+                  interval: 1
+                  datepart: month

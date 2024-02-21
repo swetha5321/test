@@ -1,0 +1,109 @@
+version: 2
+sources:
+  - name: STAGE_SCHEMA_test
+    description: testcase for intermediate database
+    database: MIGRATION_DB
+    schema: DEMO_SCHEMA
+    tables:
+      - name: OFFLINE_SALES
+        description: table_test
+        tests:
+          # - dbt_utils.expression_is_true:
+          #     expression: "TOTAL_REVENUE - TOTAL_COST = TOTAL_PROFIT"
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 15
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["REGION","COUNTRY","ITEM_TYPE","SALES_TYPE","ORDER_PRIORITY","ORDER_ID","ORDER_DATE","SHIP_DATE","UNITS_SOLD","UNITS_PRICE","UNIT_COST","TOTAL_REVENUE","TOTAL_COST","TOTAL_PROFIT","DATE_DIFFERENCE"]
+        columns:
+          - name: REGION
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: COUNTRY
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: ITEM_TYPE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: SALES_TYPE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: ORDER_PRIORITY
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: ORDER_ID
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+          - name: ORDER_DATE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: date
+          - name: SHIP_DATE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: date
+          - name: UNITS_SOLD
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+          - name: UNITS_PRICE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+          - name: UNIT_COST
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+          - name: TOTAL_REVENUE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - revenue_calculation
+          - name: TOTAL_COST
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+          - name: TOTAL_PROFIT
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+          - name: DATE_DIFFERENCE
+            description: column_test
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+
