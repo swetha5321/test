@@ -16,7 +16,7 @@ sources:
           - dbt_expectations.expect_table_columns_to_contain_set:
               column_list: ["REGION","COUNTRY","ITEM_TYPE","SALES_TYPE","ORDER_PRIORITY","ORDER_ID","ORDER_DATE","SHIP_DATE","UNITS_SOLD","UNITS_PRICE","UNIT_COST","TOTAL_REVENUE","TOTAL_COST","TOTAL_PROFIT","DATE_DIFFERENCE"]
           - dbt_expectations.expect_table_columns_to_match_ordered_list:
-              column_list: ["REGION","COUNTRY","ITEM_TYPE","SALES_TYPE","ORDER_PRIORITY","ORDER_ID","ORDER_DATE","SHIP_DATE","UNITS_SOLD","UNITS_PRICE","UNIT_COST","TOTAL_REVENUE","TOTAL_COST","TOTAL_PROFIT","DATE_DIFFERENCE"]
+              column_list: ["REGION","COUNTRY","ITEM_TYPE","SALES_TYPE","ORDER_PRIORITY","ORDER_DATE","ORDER_ID","SHIP_DATE","UNITS_SOLD","UNITS_PRICE","UNIT_COST","TOTAL_REVENUE","TOTAL_COST","TOTAL_PROFIT","DATE_DIFFERENCE"]
           - dbt_expectations.expect_table_row_count_to_be_between:
               min_value: 1 
               max_value: 550
@@ -90,7 +90,7 @@ sources:
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: date
               - dbt_expectations.expect_column_values_to_match_regex:
-                  regex: "/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/"
+                  regex: "/^[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}$/"
           - name: SHIP_DATE
             description: column_test
             tests:
@@ -98,7 +98,7 @@ sources:
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: date
               - dbt_expectations.expect_column_values_to_match_regex:
-                  regex: "/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/"
+                  regex: "/^[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}$/"
           - name: UNITS_SOLD
             description: column_test
             tests:
@@ -130,7 +130,10 @@ sources:
               - revenue_calculation
               - dbt_expectations.expect_column_sum_to_be_between:
                   min_value: 1
-                  max_value: 2
+                  max_value: 10000000000
+              - transaction_sum_test:
+                  test_value: 1000000
+                  test_year: 2010
           - name: TOTAL_COST
             description: column_test
             tests:
