@@ -1,0 +1,15 @@
+version: 2
+sources:
+  - name: POSITIVE_TEST
+    description: positive values
+    database: MIGRATION_DB
+    schema: DEMO_SCHEMA
+    tables:
+      - name: OFFLINE_SALES
+        description: table_test
+        columns:
+          - name: UNITS_SOLD
+            description: column_test
+            tests:
+              - not_null
+              - positive
