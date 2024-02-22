@@ -3,16 +3,13 @@ sources:
   - name: STAGE_TABLES_TEST
     description: testcase for stage tables
     database: MIGRATION_DB
-    schema: STAGE_TABLES
+    schema: TARGET_TABLES
     tables:
       - name: OFFLINE_SALES
         description: table_test
         tests:
-          - dbt_expectations.expect_table_column_count_to_be_between:
-              min_value: 1
-              max_value: 15
-          - dbt_expectations.expect_table_column_count_to_equal:
-              value: 15
+          - dbt_expectations.expect_table_column_count_to_equal_other_table:
+              compare_model: STAGE_TABLES.OFFLINE_SALES
           - dbt_expectations.expect_table_columns_to_contain_set:
               column_list:
                 [
@@ -51,12 +48,13 @@ sources:
                   "TOTAL_PROFIT",
                   "DATE_DIFFERENCE",
                 ]
-          - dbt_expectations.expect_table_row_count_to_be_between:
-              min_value: 1
-              max_value: 550
-          - dbt_expectations.expect_table_row_count_to_equal:
-              value: 520
-
+          - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: STAGE_TABLES.OFFLINE_SALES
+          - dbt_utils.equality:
+              compare_model: MIGRATION_DB.STAGE_TABLES.OFFLINE_SALES
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: sum(TOTAL_REVENUE)
+              compare_model: STAGE_TABLES.OFFLINE_SALES
         columns:
           - name: REGION
             description: column_test
