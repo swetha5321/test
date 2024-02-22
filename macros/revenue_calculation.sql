@@ -2,7 +2,7 @@
 
 WITH units as(
     SELECT
-        *, ROUND( (UNITS_SOLD* UNITS_PRICE),2) as revenue 
+        *, ROUND( (UNITS_SOLD * UNITS_PRICE),2) as revenue 
     FROM {{ model }}
 )
 SELECT 
