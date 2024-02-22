@@ -1,6 +1,6 @@
 version: 2
 sources:
-  - name: STAGE_TABLES_TEST
+  - name: TARGRT_TABLES_TEST
     description: testcase for stage tables
     database: MIGRATION_DB
     schema: TARGET_TABLES
