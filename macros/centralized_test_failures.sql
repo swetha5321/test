@@ -8,7 +8,7 @@
     {%- endif -%}
   {%- endfor -%}
   
-  {%- set central_tbl -%} {{ target.schema }}.test_failure_central {%- endset -%}
+  {%- set central_tbl -%} {{ target.schema }}.TEST_FAILURES {%- endset -%}
 
  
   
