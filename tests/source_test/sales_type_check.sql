@@ -1,0 +1,1 @@
+SELECT $1,$4 FROM @SALES_STAGE WHERE $4 NOT IN ('Online','Offline')

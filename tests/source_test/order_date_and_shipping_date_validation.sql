@@ -1,0 +1,1 @@
+SELECT $1,$6,$8 FROM @SALES_STAGE where cast($6 as date) > cast($8 as date)

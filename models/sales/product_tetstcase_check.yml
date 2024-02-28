@@ -1,0 +1,16 @@
+version: 2
+sources:
+  - name: STAGE_TABLES_PRODUCT_TEST
+    description: testcase for stage tables
+    database: MIGRATION_DB
+    schema: STAGE_TABLES
+    tables:
+      - name: OFFLINE_SALES
+        description: table_test
+        columns:
+          - name: TOTAL_REVENUE
+            description: column_test
+            tests:
+              - product_of_two_column_equal_to_other_column:
+                  column_name_1: UNITS_SOLD
+                  column_name_2: UNITS_PRICE

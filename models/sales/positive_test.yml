@@ -3,13 +3,19 @@ sources:
   - name: POSITIVE_TEST
     description: positive values
     database: MIGRATION_DB
-    schema: DEMO_SCHEMA
+    schema: STAGE_SCHEMA
     tables:
       - name: OFFLINE_SALES
         description: table_test
         columns:
+          - name: REGION
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_value_lengths_to_equal:
+                  value: 18
           - name: UNITS_SOLD
             description: column_test
             tests:
-              - not_null
-              - positive
+              - expect_column_value_to_be_positive
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
