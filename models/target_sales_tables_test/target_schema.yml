@@ -1,0 +1,329 @@
+version: 2
+sources:
+  - name: TARGET_SCHEMA_TEST
+    description: testcase for stage tables
+    database: MIGRATION_DB
+    schema: TARGET_SCHEMA
+    tables:
+      - name: OFFLINE_SALES_TARGET
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal_other_table:
+              compare_model: STAGE_SCHEMA.OFFLINE_SALES
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list:
+                [
+                  "SALES_ID",
+                  "REGION",
+                  "COUNTRY",
+                  "ITEM_TYPE",
+                  "SALES_TYPE",
+                  "UNITS_SOLD",
+                  "UNITS_PRICE",
+                  "UNIT_COST",
+                  "TOTAL_REVENUE",
+                  "TOTAL_COST",
+                  "TOTAL_PROFIT",
+                  "SALES_DATE"
+                ]
+          - dbt_expectations.expect_table_columns_to_match_ordered_list:
+              column_list:
+                [
+                  "SALES_ID",
+                  "REGION",
+                  "COUNTRY",
+                  "ITEM_TYPE",
+                  "SALES_TYPE",
+                  "UNITS_SOLD",
+                  "UNITS_PRICE",
+                  "UNIT_COST",
+                  "TOTAL_REVENUE",
+                  "TOTAL_COST",
+                  "TOTAL_PROFIT",
+                  "SALES_DATE"
+                ]
+          - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: STAGE_SCHEMA.OFFLINE_SALES
+          - dbt_utils.equality:
+              compare_model: MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: sum(TOTAL_REVENUE)
+              compare_model: STAGE_SCHEMA.OFFLINE_SALES
+              group_by: [SALES_DATE]
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: avg(TOTAL_REVENUE)
+              compare_model: STAGE_SCHEMA.OFFLINE_SALES
+              group_by: SALES_DATE
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: count(*)
+              compare_model: STAGE_SCHEMA.OFFLINE_SALES
+              group_by: SALES_DATE
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+          # - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+          #     expression: avg(TOTAL_REVENUE)
+          #     compare_model: STAGE_SCHEMA.OFFLINE_SALES
+          #     group_by: SALES_DATE
+          #     row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)         
+        # columns:
+        #   - name: SALES_ID
+        #     description: column_test
+        #     tests:
+        #       - dbt_expectations.expect_column_to_exist
+        #       - unique
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: NUMBER
+        #       - dbt_expectations.expect_column_values_to_be_between:
+        #           min_value: 1
+        #           max_value: 150000
+        #       - dbt_expectations.expect_column_values_to_be_increasing
+        #   - name: REGION
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 50
+        #   - name: COUNTRY
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 50
+        #   - name: ITEM_TYPE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_values_to_be_in_set:
+        #           value_set:
+        #             [
+        #               Cosmetics,
+        #               Baby Food,
+        #               Cereal,
+        #               Fruits,
+        #               Clothes,
+        #               Vegetables,
+        #               Snacks,
+        #               Beverages,
+        #               Meat,
+        #               Office Supplies,
+        #               Household,
+        #               Personal Care,
+        #             ]
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 30
+        #   - name: SALES_TYPE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_values_to_be_in_set:
+        #           value_set: [Offline, Online]
+        #   - name: UNITS_SOLD
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: number
+        #   - name: UNITS_PRICE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: UNIT_COST
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_REVENUE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_COST
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_PROFIT
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: SALES_DATE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: date
+        #       - dbt_expectations.expect_column_values_to_match_regex:
+        #           regex: "^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$"
+      - name: ONLINE_SALES_TARGET
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal_other_table:
+              compare_model: STAGE_SCHEMA.ONLINE_SALES
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list:
+                [
+                  "SALES_ID",
+                  "REGION",
+                  "COUNTRY",
+                  "ITEM_TYPE",
+                  "SALES_TYPE",
+                  "UNITS_SOLD",
+                  "UNITS_PRICE",
+                  "UNIT_COST",
+                  "TOTAL_REVENUE",
+                  "TOTAL_COST",
+                  "TOTAL_PROFIT",
+                  "SALES_DATE"
+                ]
+          - dbt_expectations.expect_table_columns_to_match_ordered_list:
+              column_list:
+                [
+                  "SALES_ID",
+                  "REGION",
+                  "COUNTRY",
+                  "ITEM_TYPE",
+                  "SALES_TYPE",
+                  "UNITS_SOLD",
+                  "UNITS_PRICE",
+                  "UNIT_COST",
+                  "TOTAL_REVENUE",
+                  "TOTAL_COST",
+                  "TOTAL_PROFIT",
+                  "SALES_DATE"
+                ]
+          - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: STAGE_SCHEMA.ONLINE_SALES
+          - dbt_utils.equality:
+              compare_model: MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: sum(TOTAL_REVENUE)
+              compare_model: STAGE_SCHEMA.ONLINE_SALES
+          
+        # columns:
+        #   - name: SALES_ID
+        #     description: column_test
+        #     tests:
+        #       - dbt_expectations.expect_column_to_exist
+        #       - unique
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: NUMBER
+        #       - dbt_expectations.expect_column_values_to_be_between:
+        #           min_value: 1
+        #           max_value: 150000
+        #       - dbt_expectations.expect_column_values_to_be_increasing
+        #   - name: REGION
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 50
+        #   - name: COUNTRY
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 50
+        #   - name: ITEM_TYPE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_values_to_be_in_set:
+        #           value_set:
+        #             [
+        #               Cosmetics,
+        #               Baby Food,
+        #               Cereal,
+        #               Fruits,
+        #               Clothes,
+        #               Vegetables,
+        #               Snacks,
+        #               Beverages,
+        #               Meat,
+        #               Office Supplies,
+        #               Household,
+        #               Personal Care,
+        #             ]
+        #       - dbt_expectations.expect_column_value_lengths_to_be_between:
+        #           min_value: 1
+        #           max_value: 30
+        #   - name: SALES_TYPE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: varchar
+        #       - dbt_expectations.expect_column_values_to_be_in_set:
+        #           value_set: [Offline, Online]
+        #   - name: UNITS_SOLD
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: number
+        #   - name: UNITS_PRICE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: UNIT_COST
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_REVENUE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_COST
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: TOTAL_PROFIT
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: float
+        #   - name: SALES_DATE
+        #     description: column_test
+        #     tests:
+        #       - not_null
+        #       - dbt_expectations.expect_column_values_to_be_of_type:
+        #           column_type: date
+        #       - dbt_expectations.expect_column_values_to_match_regex:
+        #           regex: "^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$"  

@@ -51,5 +51,5 @@ models:
     materialized: table
     schema: DEMO_SCHEMA
 
-on-run-end:
-  - "{{ centralize_test_failures(results) }}"
+#on-run-end:
+#  - "{{ centralize_test_failures(results) }}"
