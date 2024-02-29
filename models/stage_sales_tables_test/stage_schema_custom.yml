@@ -1,6 +1,6 @@
 version: 2
 sources:
-  - name: STAGE_TABLES_CUSTOM_TEST
+  - name: STAGE_SCHEMA_CUSTOM_TEST
     description: testcase for stage tables
     database: MIGRATION_DB
     schema: STAGE_SCHEMA
@@ -8,7 +8,7 @@ sources:
       - name: OFFLINE_SALES
         description: table_test
         columns:
-          - name: ORDER_ID
+          - name: SALES_ID
             description: column_test
             tests:
               - expect_column_value_to_be_positive
@@ -38,9 +38,6 @@ sources:
               - dbt_expectations.expect_column_sum_to_be_between:
                   min_value: 1
                   max_value: 10000000000
-              - transaction_sum_test:
-                  test_value: 1000000
-                  test_year: 2010
 
           - name: TOTAL_COST
             description: column_test
@@ -56,8 +53,51 @@ sources:
               - expect_difference_of_two_column_equal_to_other_column:
                   column_name_1: TOTAL_REVENUE
                   column_name_2: TOTAL_COST
-
-          - name: DATE_DIFFERENCE
+      - name: ONLINE_SALES
+        description: table_test
+        columns:
+          - name: SALES_ID
             description: column_test
             tests:
               - expect_column_value_to_be_positive
+
+          - name: UNITS_SOLD
+            description: column_test
+            tests:
+              - expect_column_value_to_be_positive
+
+          - name: UNITS_PRICE
+            description: column_test
+            tests:
+              - expect_column_value_to_be_positive
+
+          - name: UNIT_COST
+            description: column_test
+            tests:
+              - expect_column_value_to_be_positive
+
+          - name: TOTAL_REVENUE
+            description: column_test
+            tests:
+              - expect_column_value_to_be_positive
+              - product_of_two_column_equal_to_other_column:
+                  column_name_1: UNITS_SOLD
+                  column_name_2: UNITS_PRICE
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  min_value: 1
+                  max_value: 10000000000
+
+          - name: TOTAL_COST
+            description: column_test
+            tests:
+              - expect_column_value_to_be_positive
+              - product_of_two_column_equal_to_other_column:
+                  column_name_1: UNITS_SOLD
+                  column_name_2: UNIT_COST
+
+          - name: TOTAL_PROFIT
+            description: column_test
+            tests:
+              - expect_difference_of_two_column_equal_to_other_column:
+                  column_name_1: TOTAL_REVENUE
+                  column_name_2: TOTAL_COST
