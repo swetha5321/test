@@ -54,12 +54,12 @@ sources:
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: avg(TOTAL_REVENUE)
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-              group_by: SALES_DATE
+              group_by: [SALES_DATE]
               row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: count(*)
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-              group_by: SALES_DATE
+              group_by: [SALES_DATE]
               row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
           # - dbt_expectations.expect_table_aggregation_to_equal_other_table:
           #     expression: avg(TOTAL_REVENUE)
@@ -218,6 +218,18 @@ sources:
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: sum(TOTAL_REVENUE)
               compare_model: STAGE_SCHEMA.ONLINE_SALES
+              group_by: [SALES_DATE]
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: avg(TOTAL_REVENUE)
+              compare_model: STAGE_SCHEMA.ONLINE_SALES
+              group_by: [SALES_DATE]
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: count(*)
+              compare_model: STAGE_SCHEMA.ONLINE_SALES
+              group_by: [SALES_DATE]
+              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
           
         # columns:
         #   - name: SALES_ID

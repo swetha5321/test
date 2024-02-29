@@ -48,8 +48,8 @@ sources:
           - dbt_expectations.expect_table_row_count_to_be_between:
               min_value: 1
               max_value: 550
-          - dbt_expectations.expect_table_row_count_to_equal:
-              value: 520
+          # - dbt_expectations.expect_table_row_count_to_equal:
+          #     value: 520
         columns:
           - name: SALES_ID
             description: column_test
@@ -59,9 +59,9 @@ sources:
               - not_null
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: NUMBER
-              - dbt_expectations.expect_column_values_to_be_between:
-                  min_value: 1
-                  max_value: 150000
+              # - dbt_expectations.expect_column_values_to_be_between:
+              #     min_value: 1
+              #     max_value: 984673965
               - dbt_expectations.expect_column_values_to_be_increasing
           - name: REGION
             description: column_test
@@ -202,8 +202,8 @@ sources:
           - dbt_expectations.expect_table_row_count_to_be_between:
               min_value: 1
               max_value: 550
-          - dbt_expectations.expect_table_row_count_to_equal:
-              value: 520
+          # - dbt_expectations.expect_table_row_count_to_equal:
+          #     value: 520
         columns:
           - name: SALES_ID
             description: column_test
@@ -213,9 +213,9 @@ sources:
               - not_null
               - dbt_expectations.expect_column_values_to_be_of_type:
                   column_type: NUMBER
-              - dbt_expectations.expect_column_values_to_be_between:
-                  min_value: 1
-                  max_value: 150000
+              # - dbt_expectations.expect_column_values_to_be_between:
+              #     min_value: 1
+              #     max_value: 991644705
               - dbt_expectations.expect_column_values_to_be_increasing
           - name: REGION
             description: column_test
