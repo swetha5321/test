@@ -46,8 +46,8 @@ sources:
                   "TOTAL_COST",
                   "TOTAL_PROFIT",
                   "SALES_DATE",
-                  "FILENAME",
-                  "LOADED_AT"
+                  "LOADED_AT",
+                  "FILENAME"
                 ]
           - dbt_expectations.expect_table_row_count_to_be_between:
               min_value: 1
