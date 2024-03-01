@@ -13,7 +13,7 @@
 
 {%- for i in results_list %}
     {% set sql %}
-        alter warehouse {{i}} resume
+        alter warehouse {{i}} resume 
     {% endset %}
   {% set tabless=run_query(sql) %}
 {% endfor %}
