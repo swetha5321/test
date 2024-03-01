@@ -41,17 +41,18 @@ models:
     # Applies to all files under models/example/
     #example:
     #  +materialized: table
-  tests:
-    +severity: warn
+
   #dbt_artifacts:
   #  +database: MIGRATION_DB
   #  +schema: DEMO_SCHEMA
 #  elementary:
  #   +schema: "elementary"
   
-  sales:
-    materialized: table
-    schema: DEMO_SCHEMA
+    sales:
+      materialized: table
+      schema: STAGE_SCHEMA
+      tests:
+        +severity: warn
 
 #on-run-end:
 #  - "{{ centralize_test_failures(results) }}"
