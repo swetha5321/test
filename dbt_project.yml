@@ -38,17 +38,15 @@ vars:
   'dbt_date:time_zone': 'Asia/Kolkata'
 models:
   my_new_project:
-    # Applies to all files under models/example/
-    #example:
-    #  +materialized: table
-
-  #dbt_artifacts:
-  #  +database: MIGRATION_DB
-  #  +schema: DEMO_SCHEMA
-#  elementary:
- #   +schema: "elementary"
-  
-    sales:
+    #Applies to all files under models/example/
+    example:
+     +materialized: table
+    stage_sales_tables_test:
+      materialized: table
+      schema: STAGE_SCHEMA
+      tests:
+        +severity: warn
+    target_sales_tables_test:
       materialized: table
       schema: STAGE_SCHEMA
       tests:
