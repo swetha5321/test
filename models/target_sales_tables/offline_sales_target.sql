@@ -5,7 +5,6 @@
     )
 }}
 SELECT 
-    FILENAME,
     Sales_ID,
     Region,
     Country,
@@ -18,7 +17,8 @@ SELECT
     total_cost,
     total_profit,
     sales_date,
-    CURRENT_TIMESTAMP() as LOADED_AT
+    CURRENT_TIMESTAMP() as LOADED_AT,
+    FILENAME
  FROM {{ ref('offline_sales') }} 
 
  {% if is_incremental() %}
