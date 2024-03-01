@@ -15,11 +15,13 @@ SELECT
     $9::float as total_revenue,
     $10::float as total_cost,
     $11::float as total_profit,
-    $12::date as sales_date
+    $12::date as sales_date,
+    CURRENT_TIMESTAMP() as Loaded_at,
+    METADATA$FILENAME as Filename
  FROM @sales_stage WHERE $5 = 'Offline'
 
- {% if is_incremental() %}
+  {% if is_incremental() %}
 
-  and sales_date > (select max(sales_date) from TARGET_SCHEMA.OFFLINE_SALES_TARGET)
+  and Filename not in (SELECT Filename FROM MIGRATION_DB.TARGET_SCHEMA_OFFLINE_SALES_TARGET)
 
-{% endif %}
+ {% endif %}

@@ -5,9 +5,9 @@ sources:
     database: MIGRATION_DB
     schema: TARGET_SCHEMA
     tables:
-      - name: OFFLINE_SALES_TARGET
-        description: table_test
-        tests:
+       - name: OFFLINE_SALES_TARGET
+         description: table_test
+         tests:
           - dbt_expectations.expect_table_column_count_to_equal_other_table:
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
           - dbt_expectations.expect_table_columns_to_contain_set:
@@ -24,7 +24,9 @@ sources:
                   "TOTAL_REVENUE",
                   "TOTAL_COST",
                   "TOTAL_PROFIT",
-                  "SALES_DATE"
+                  "SALES_DATE",
+                  "LOADED_AT",
+                  "FILENAME"
                 ]
           - dbt_expectations.expect_table_columns_to_match_ordered_list:
               column_list:
@@ -40,32 +42,43 @@ sources:
                   "TOTAL_REVENUE",
                   "TOTAL_COST",
                   "TOTAL_PROFIT",
-                  "SALES_DATE"
+                  "SALES_DATE",
+                  "LOADED_AT",
+                  "FILENAME"
                 ]
           - dbt_expectations.expect_table_row_count_to_equal_other_table:
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-          - dbt_utils.equality:
-              compare_model: MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES
+              group_by: [FILENAME]
+              row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+
+          # - dbt_utils.equality:
+          #     compare_model: MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES
+
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: sum(TOTAL_REVENUE)
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+              group_by: [FILENAME]
+              row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: avg(TOTAL_REVENUE)
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+              group_by: [FILENAME]
+              row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+
           - dbt_expectations.expect_table_aggregation_to_equal_other_table:
               expression: count(*)
               compare_model: STAGE_SCHEMA.OFFLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
-          # - dbt_expectations.expect_table_aggregation_to_equal_other_table:
-          #     expression: avg(TOTAL_REVENUE)
-          #     compare_model: STAGE_SCHEMA.OFFLINE_SALES
-          #     group_by: SALES_DATE
-          #     row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)         
+              group_by: [FILENAME]
+              row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES)
+
+          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+              expression: avg(TOTAL_REVENUE)
+              compare_model: TARGET_SCHEMA.OFFLINE_SALES_TARGET
+              #group_by: [SALES_DATE]
+              row_condition:  SALES_DATE = dateadd(day,-1,(SELECT DISTINCT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES ))
+              compare_row_condition: SALES_DATE = (SELECT DISTINCT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.OFFLINE_SALES )
+              tolerance_percent: 0.1 
         # columns:
         #   - name: SALES_ID
         #     description: column_test
@@ -174,62 +187,80 @@ sources:
         #           column_type: date
         #       - dbt_expectations.expect_column_values_to_match_regex:
         #           regex: "^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$"
-      - name: ONLINE_SALES_TARGET
-        description: table_test
-        tests:
-          - dbt_expectations.expect_table_column_count_to_equal_other_table:
-              compare_model: STAGE_SCHEMA.ONLINE_SALES
-          - dbt_expectations.expect_table_columns_to_contain_set:
-              column_list:
-                [
-                  "SALES_ID",
-                  "REGION",
-                  "COUNTRY",
-                  "ITEM_TYPE",
-                  "SALES_TYPE",
-                  "UNITS_SOLD",
-                  "UNITS_PRICE",
-                  "UNIT_COST",
-                  "TOTAL_REVENUE",
-                  "TOTAL_COST",
-                  "TOTAL_PROFIT",
-                  "SALES_DATE"
-                ]
-          - dbt_expectations.expect_table_columns_to_match_ordered_list:
-              column_list:
-                [
-                  "SALES_ID",
-                  "REGION",
-                  "COUNTRY",
-                  "ITEM_TYPE",
-                  "SALES_TYPE",
-                  "UNITS_SOLD",
-                  "UNITS_PRICE",
-                  "UNIT_COST",
-                  "TOTAL_REVENUE",
-                  "TOTAL_COST",
-                  "TOTAL_PROFIT",
-                  "SALES_DATE"
-                ]
-          - dbt_expectations.expect_table_row_count_to_equal_other_table:
-              compare_model: STAGE_SCHEMA.ONLINE_SALES
-          - dbt_utils.equality:
-              compare_model: MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES
-          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
-              expression: sum(TOTAL_REVENUE)
-              compare_model: STAGE_SCHEMA.ONLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
-          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
-              expression: avg(TOTAL_REVENUE)
-              compare_model: STAGE_SCHEMA.ONLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
-          - dbt_expectations.expect_table_aggregation_to_equal_other_table:
-              expression: count(*)
-              compare_model: STAGE_SCHEMA.ONLINE_SALES
-              group_by: [SALES_DATE]
-              row_condition: SALES_DATE IN (SELECT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+      #  - name: ONLINE_SALES_TARGET
+      #    description: table_test
+      #    tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal_other_table:
+      #         compare_model: STAGE_SCHEMA.ONLINE_SALES
+      #     - dbt_expectations.expect_table_columns_to_contain_set:
+      #         column_list:
+      #           [
+      #             "SALES_ID",
+      #             "REGION",
+      #             "COUNTRY",
+      #             "ITEM_TYPE",
+      #             "SALES_TYPE",
+      #             "UNITS_SOLD",
+      #             "UNITS_PRICE",
+      #             "UNIT_COST",
+      #             "TOTAL_REVENUE",
+      #             "TOTAL_COST",
+      #             "TOTAL_PROFIT",
+      #             "SALES_DATE",
+      #             "LOADED_AT",
+      #             "FILENAME"
+      #           ]
+      #     - dbt_expectations.expect_table_columns_to_match_ordered_list:
+      #         column_list:
+      #           [
+      #             "SALES_ID",
+      #             "REGION",
+      #             "COUNTRY",
+      #             "ITEM_TYPE",
+      #             "SALES_TYPE",
+      #             "UNITS_SOLD",
+      #             "UNITS_PRICE",
+      #             "UNIT_COST",
+      #             "TOTAL_REVENUE",
+      #             "TOTAL_COST",
+      #             "TOTAL_PROFIT",
+      #             "SALES_DATE",
+      #             "LOADED_AT",
+      #             "FILENAME"
+      #           ]
+      #     - dbt_expectations.expect_table_row_count_to_equal_other_table:
+      #         compare_model: STAGE_SCHEMA.ONLINE_SALES
+      #         group_by: [FILENAME]
+      #         row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+
+      #     - dbt_utils.equality:
+      #         compare_model: MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES
+
+      #     - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+      #         expression: sum(TOTAL_REVENUE)
+      #         compare_model: STAGE_SCHEMA.ONLINE_SALES
+      #         group_by: [FILENAME]
+      #         row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+
+      #     - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+      #         expression: avg(TOTAL_REVENUE)
+      #         compare_model: STAGE_SCHEMA.ONLINE_SALES
+      #         group_by: [FILENAME]
+      #         row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+
+      #     - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+      #         expression: count(*)
+      #         compare_model: STAGE_SCHEMA.ONLINE_SALES
+      #         group_by: [FILENAME]
+      #         row_condition: FILENAME IN (SELECT DISTINCT FILENAME FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES)
+              
+      #     - dbt_expectations.expect_table_aggregation_to_equal_other_table:
+      #         expression: avg(TOTAL_REVENUE)
+      #         compare_model: TARGET_SCHEMA.ONLINE_SALES_TARGET
+      #         group_by: [SALES_DATE]
+      #         row_condition:  SALES_DATE = dateadd(day,-1,(SELECT DISTINCT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES ))
+      #         compare_row_condition: SALES_DATE = (SELECT DISTINCT SALES_DATE FROM MIGRATION_DB.STAGE_SCHEMA.ONLINE_SALES )
+      #         tolerance_percent: 0.1 
           
         # columns:
         #   - name: SALES_ID

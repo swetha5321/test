@@ -21,6 +21,6 @@ SELECT
 
  {% if is_incremental() %}
 
-  where sales_date > (select max(sales_date) from {{ this }})
+  WHERE Filename not in (SELECT Filename FROM {{this}})
 
 {% endif %}
