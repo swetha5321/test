@@ -46,10 +46,10 @@ models:
   #  +schema: DEMO_SCHEMA
 #  elementary:
  #   +schema: "elementary"
-  
-  sales:
-    materialized: table
-    schema: DEMO_SCHEMA
+    stage_sales_tables:
+      +materialized: incremental
+      +schema: STAGE_LANDED
+      +database: INTERMEDIATE
 
 #on-run-end:
 #  - "{{ centralize_test_failures(results) }}"
