@@ -39,8 +39,8 @@ vars:
 models:
   my_new_project:
     #Applies to all files under models/example/
-    example:
-     +materialized: table
+    # example:
+    #  +materialized: table
     stage_sales_tables_test:
       materialized: table
       schema: STAGE_SCHEMA
@@ -48,7 +48,7 @@ models:
         +severity: warn
     target_sales_tables_test:
       materialized: table
-      schema: STAGE_SCHEMA
+      schema: TARGET_SCHEMA
       tests:
         +severity: warn
 
