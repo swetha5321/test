@@ -40,12 +40,15 @@ models:
   my_new_project:
     stage_sales_tables_test:
       materialized: table
+      on-run-end:
+        - "{{ centralize_test_failures(results) }}"
     target_sales_tables_test:
       materialized: table
       schema: TARGET_SCHEMA
+      on-run-end:
+        - "{{ centralize_test_failures(results) }}"
 tests:
         +severity: warn
 
 
-on-run-end:
-  - "{{ centralize_test_failures(results) }}"
+
