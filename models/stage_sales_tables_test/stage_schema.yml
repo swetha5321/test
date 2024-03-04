@@ -164,6 +164,7 @@ sources:
                   regex: "^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$"
               - expect_row_values_to_have_recent_data:
                   datepart: day
+                  
       
       # - name: ONLINE_SALES
       #   description: table_test
