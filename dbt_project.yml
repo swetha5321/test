@@ -44,13 +44,10 @@ models:
     stage_sales_tables_test:
       materialized: table
       schema: STAGE_SCHEMA
-      tests:
-        +severity: warn
+      +severity: warn
     target_sales_tables_test:
       materialized: table
       schema: TARGET_SCHEMA
-      tests:
-        +severity: warn
 
 #on-run-end:
 #  - "{{ centralize_test_failures(results) }}"
