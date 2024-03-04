@@ -22,6 +22,6 @@ SELECT
 
   {% if is_incremental() %}
 
-  and Filename not in (SELECT Filename FROM MIGRATION_DB.TARGET_SCHEMA_OFFLINE_SALES_TARGET)
+  and Filename not in (SELECT Filename FROM MIGRATION_DB.TARGET_SCHEMA.OFFLINE_SALES_TARGET)
 
  {% endif %}
