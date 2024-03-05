@@ -19,7 +19,7 @@
   
     select
       '{{ result.node.name }}' as test_name,
-      object_construct_keep_null(*) as test_failures_json,
+      object_construct_keep_null(*) as test_failures_result,
       current_timestamp() as detected_at
       
     from {{ result.node.relation_name }}
