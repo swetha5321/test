@@ -38,11 +38,11 @@ vars:
   'dbt_date:time_zone': 'Asia/Kolkata'
 models:
   my_new_project:
-    stage_sales_tables_test:
-      +pre-hook:
-        - "create table if not exists {{ target.schema }}.audit_dbt_test_results (node text, status text, execution_time decimal(10,2), time timestamp)"
+    stage_sales_tables:
       +post-hook:
-        - "insert into {{ target.schema }}.audit_dbt_test_results (node, status, execution_time, time) values {{ results_values(results) }}"
+        - "create table if not exists {{ target.schema }}.audit_dbt_test_results (node text, status text, execution_time decimal(10,2), time timestamp)"
+      #+post-hook:
+      #  - "insert into {{ target.schema }}.audit_dbt_test_results (node, status, execution_time, time) values {{ results_values(results) }}"
 tests:
         +severity: warn
 
