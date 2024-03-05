@@ -39,10 +39,9 @@ vars:
 models:
   my_new_project:
     stage_sales_tables:
-      +post-hook:
-        - "create table if not exists {{ target.schema }}.audit_dbt_test_results (node text, status text, execution_time decimal(10,2), time timestamp)"
-    target_sales_tables:
       +pre-hook:
+        - "create table if not exists {{ target.schema }}.audit_dbt_test_results (node text, status text, execution_time decimal(10,2), time timestamp)"
+      +post-hook:
         - "insert into {{ target.schema }}.audit_dbt_test_results (node, status, execution_time, time) values {{ results_values(results) }}"
 tests:
         +severity: warn
