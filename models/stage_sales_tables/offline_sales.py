@@ -1,4 +1,4 @@
-    
+     
 from snowflake.snowpark.functions import udf
 import pandas as pd
 

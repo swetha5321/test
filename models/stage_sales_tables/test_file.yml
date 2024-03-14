@@ -1,0 +1,3543 @@
+version: 2
+sources:
+  - name: dbt_spandi_test
+    description: testcase for intermediate database
+    database: sfdatamigration
+    schema: dbt_spandi
+    tables:
+      - name: my_second_dbt_model
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 1
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["id"]
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 1
+        columns:
+          - name: id
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1
+                  strictly: false
+      - name: my_first_dbt_model
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 1
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["id"]
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 2
+        columns:
+          - name: id
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1
+                  strictly: false
+  - name: OxGC_test
+    description: testcase for intermediate database
+    database: sfdatamigration
+    schema: OxGC
+    tables:
+      - name: OxGC_2021
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 147
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["CountryName","CountryCode","RegionName","RegionCode","Jurisdiction","Date","C1E_School_closing","C1E_Flag","C1NV_School_closing","C1NV_Flag","C1V_School_closing","C1V_Flag","C1M_School_closing","C1M_Flag","C1_Notes","C2E_Workplace_closing","C2E_Flag","C2NV_Workplace_closing","C2NV_Flag","C2V_Workplace_closing","C2V_Flag","C2M_Workplace_closing","C2M_Flag","C2_Notes","C3E_Cancel_public_events","C3E_Flag","C3NV_Cancel_public_events","C3NV_Flag","C3V_Cancel_public_events","C3V_Flag","C3M_Cancel_public_events","C3M_Flag","C3_Notes","C4E_Restrictions_on_gatherings","C4E_Flag","C4NV_Restrictions_on_gatherings","C4NV_Flag","C4V_Restrictions_on_gatherings","C4V_Flag","C4M_Restrictions_on_gatherings","C4M_Flag","C4_Notes","C5E_Close_public_transport","C5E_Flag","C5NV_Close_public_transport","C5NV_Flag","C5V_Close_public_transport","C5V_Flag","C5M_Close_public_transport","C5M_Flag","C5_Notes","C6E_Stay_at_home_requirements","C6E_Flag","C6NV_Stay_at_home_requirements","C6NV_Flag","C6V_Stay_at_home_requirements","C6V_Flag","C6M_Stay_at_home_requirements","C6M_Flag","C6_Notes","C7E_Restrictions_on_internal_movement","C7E_Flag","C7NV_Restrictions_on_internal_movement","C7NV_Flag","C7V_Restrictions_on_internal_movement","C7V_Flag","C7M_Restrictions_on_internal_movement","C7M_Flag","C7_Notes","C8E_International_travel_controls","C8NV_International_travel_controls","C8V_International_travel_controls","C8EV_International_travel_controls","C8_Notes","E1_Income_support","E1_Flag","E1_Notes","E2_Debt_contract_relief","E2_Notes","E3_Fiscal_measures","E3_Notes","E4_International_support","E4_Notes","H1_Public_information_campaigns","H1_Flag","H1_Notes","H2_Testing_policy","H2_Notes","H3_Contact_tracing","H3_Notes","H4_Emergency_investment_in_healthcare","H4_Notes","H5_Investment_in_vaccines","H5_Notes","H6E_Facial_Coverings","H6E_Flag","H6NV_Facial_Coverings","H6NV_Flag","H6V_Facial_Coverings","H6V_Flag","H6M_Facial_Coverings","H6M_Flag","H6_Notes","H7_Vaccination_policy","H7_Flag","H7_Notes","H8E_Protection_of_elderly_people","H8E_Flag","H8NV_Protection_of_elderly_people","H8NV_Flag","H8V_Protection_of_elderly_people","H8V_Flag","H8M_Protection_of_elderly_people","H8M_Flag","H8_Notes","M1_Notes","V1_Vaccine_Prioritisation__summary_","V1_Notes","V2A_Vaccine_Availability__summary_","V2_Notes","V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_","V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_","V2D_Medically__clinically_vulnerable__Non_elderly_","V2E_Education","V2F_Frontline_workers___non_healthcare_","V2G_Frontline_workers___healthcare_","V3_Vaccine_Financial_Support__summary_","V3_Notes","V4_Mandatory_Vaccination__summary_","V4_Notes","ConfirmedCases","ConfirmedDeaths","MajorityVaccinated","PopulationVaccinated","StringencyIndex_NonVaccinated","StringencyIndex_Vaccinated","StringencyIndex_SimpleAverage","StringencyIndex_WeightedAverage","GovernmentResponseIndex_NonVaccinated","GovernmentResponseIndex_Vaccinated","GovernmentResponseIndex_SimpleAverage","GovernmentResponseIndex_WeightedAverage","ContainmentHealthIndex_NonVaccinated","ContainmentHealthIndex_Vaccinated","ContainmentHealthIndex_SimpleAverage","ContainmentHealthIndex_WeightedAverage","EconomicSupportIndex"]
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 67525
+        columns:
+          - name: CountryName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 28
+                  min_value: 4
+                  strictly: false
+          - name: CountryCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3
+                  min_value: 3
+                  strictly: false
+          - name: RegionName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: RegionCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: Jurisdiction
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 9
+                  strictly: false
+          - name: Date
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1364725378530
+                  strictly: false
+          - name: C1E_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 88884
+                  strictly: false
+          - name: C1E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 40021
+                  strictly: false
+          - name: C1NV_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3648
+                  strictly: false
+          - name: C1NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1611
+                  strictly: false
+          - name: C1V_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1477
+                  strictly: false
+          - name: C1V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1111
+                  strictly: false
+          - name: C1M_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 91710
+                  strictly: false
+          - name: C1M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 41637
+                  strictly: false
+          - name: C1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8290
+                  min_value: 1
+                  strictly: false
+          - name: C2E_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 86442
+                  strictly: false
+          - name: C2E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 36821
+                  strictly: false
+          - name: C2NV_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 17140
+                  strictly: false
+          - name: C2NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 6610
+                  strictly: false
+          - name: C2V_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7836
+                  strictly: false
+          - name: C2V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5591
+                  strictly: false
+          - name: C2M_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 98669
+                  strictly: false
+          - name: C2M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 42922
+                  strictly: false
+          - name: C2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 14401
+                  min_value: 9
+                  strictly: false
+          - name: C3E_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 86745
+                  strictly: false
+          - name: C3E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 44241
+                  strictly: false
+          - name: C3NV_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 12945
+                  strictly: false
+          - name: C3NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5851
+                  strictly: false
+          - name: C3V_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5588
+                  strictly: false
+          - name: C3V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 4700
+                  strictly: false
+          - name: C3M_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 95193
+                  strictly: false
+          - name: C3M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 49509
+                  strictly: false
+          - name: C3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9006
+                  min_value: 9
+                  strictly: false
+          - name: C4E_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 180200
+                  strictly: false
+          - name: C4E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 43709
+                  strictly: false
+          - name: C4NV_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 13437
+                  strictly: false
+          - name: C4NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3499
+                  strictly: false
+          - name: C4V_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7499
+                  strictly: false
+          - name: C4V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2613
+                  strictly: false
+          - name: C4M_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 190115
+                  strictly: false
+          - name: C4M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 46590
+                  strictly: false
+          - name: C4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9044
+                  min_value: 9
+                  strictly: false
+          - name: C5E_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 35127
+                  strictly: false
+          - name: C5E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 21912
+                  strictly: false
+          - name: C5NV_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2227
+                  strictly: false
+          - name: C5NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 955
+                  strictly: false
+          - name: C5V_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 433
+                  strictly: false
+          - name: C5V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 234
+                  strictly: false
+          - name: C5M_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 36341
+                  strictly: false
+          - name: C5M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 22419
+                  strictly: false
+          - name: C5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5855
+                  min_value: 8
+                  strictly: false
+          - name: C6E_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 71057
+                  strictly: false
+          - name: C6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 28790
+                  strictly: false
+          - name: C6NV_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 410
+                  strictly: false
+          - name: C6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 217
+                  strictly: false
+          - name: C6V_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 0
+                  strictly: false
+          - name: C6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C6M_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 71404
+                  strictly: false
+          - name: C6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 28951
+                  strictly: false
+          - name: C6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4947
+                  min_value: 9
+                  strictly: false
+          - name: C7E_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 45263
+                  strictly: false
+          - name: C7E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 15589
+                  strictly: false
+          - name: C7NV_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5610
+                  strictly: false
+          - name: C7NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1352
+                  strictly: false
+          - name: C7V_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1242
+                  strictly: false
+          - name: C7V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 299
+                  strictly: false
+          - name: C7M_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 48862
+                  strictly: false
+          - name: C7M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 16355
+                  strictly: false
+          - name: C7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 10757
+                  min_value: 3
+                  strictly: false
+          - name: C8E_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 139376
+                  strictly: false
+          - name: C8NV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 21493
+                  strictly: false
+          - name: C8V_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 11018
+                  strictly: false
+          - name: C8EV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 150394
+                  strictly: false
+          - name: C8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 12477
+                  min_value: 1
+                  strictly: false
+          - name: E1_Income_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 55146
+                  strictly: false
+          - name: E1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 25719
+                  strictly: false
+          - name: E1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8019
+                  min_value: 9
+                  strictly: false
+          - name: E2_Debt_contract_relief
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 56769
+                  strictly: false
+          - name: E2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 12654
+                  min_value: 9
+                  strictly: false
+          - name: E3_Fiscal_measures
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2561307542321
+                  strictly: false
+          - name: E3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4008
+                  min_value: 1
+                  strictly: false
+          - name: E4_International_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1940531380
+                  strictly: false
+          - name: E4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4346
+                  min_value: 1
+                  strictly: false
+          - name: H1_Public_information_campaigns
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 130180
+                  strictly: false
+          - name: H1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 66872
+                  strictly: false
+          - name: H1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2430
+                  min_value: 9
+                  strictly: false
+          - name: H2_Testing_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 157537
+                  strictly: false
+          - name: H2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8295
+                  min_value: 9
+                  strictly: false
+          - name: H3_Contact_tracing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 88874
+                  strictly: false
+          - name: H3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5879
+                  min_value: 9
+                  strictly: false
+          - name: H4_Emergency_investment_in_healthcare
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 196439198230
+                  strictly: false
+          - name: H4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4371
+                  min_value: 1
+                  strictly: false
+          - name: H5_Investment_in_vaccines
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 25681642908
+                  strictly: false
+          - name: H5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4544
+                  min_value: 3
+                  strictly: false
+          - name: H6E_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 191065
+                  strictly: false
+          - name: H6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 60898
+                  strictly: false
+          - name: H6NV_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1668
+                  strictly: false
+          - name: H6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 338
+                  strictly: false
+          - name: H6V_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1171
+                  strictly: false
+          - name: H6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 338
+                  strictly: false
+          - name: H6M_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 192316
+                  strictly: false
+          - name: H6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 61236
+                  strictly: false
+          - name: H6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6334
+                  min_value: 9
+                  strictly: false
+          - name: H7_Vaccination_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 231600
+                  strictly: false
+          - name: H7_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 58514
+                  strictly: false
+          - name: H7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 16313
+                  min_value: 1
+                  strictly: false
+          - name: H8E_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 83776
+                  strictly: false
+          - name: H8E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 40556
+                  strictly: false
+          - name: H8NV_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2950
+                  strictly: false
+          - name: H8NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 808
+                  strictly: false
+          - name: H8V_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1867
+                  strictly: false
+          - name: H8V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 782
+                  strictly: false
+          - name: H8M_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 86065
+                  strictly: false
+          - name: H8M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 41338
+                  strictly: false
+          - name: H8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 11438
+                  min_value: 4
+                  strictly: false
+          - name: M1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5533
+                  min_value: 1
+                  strictly: false
+          - name: V1_Vaccine_Prioritisation__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 93043
+                  strictly: false
+          - name: V1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 16379
+                  min_value: 1
+                  strictly: false
+          - name: V2A_Vaccine_Availability__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 107392
+                  strictly: false
+          - name: V2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 16290
+                  min_value: 9
+                  strictly: false
+          - name: V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2D_Medically__clinically_vulnerable__Non_elderly_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 82699
+                  strictly: false
+          - name: V2E_Education
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 73360
+                  strictly: false
+          - name: V2F_Frontline_workers___non_healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 93676
+                  strictly: false
+          - name: V2G_Frontline_workers___healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 99647
+                  strictly: false
+          - name: V3_Vaccine_Financial_Support__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 291161
+                  strictly: false
+          - name: V3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 10711
+                  min_value: 1
+                  strictly: false
+          - name: V4_Mandatory_Vaccination__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 6087
+                  strictly: false
+          - name: V4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 16372
+                  min_value: 3
+                  strictly: false
+          - name: ConfirmedCases
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 66896989013
+                  strictly: false
+          - name: ConfirmedDeaths
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1413350765
+                  strictly: false
+          - name: MajorityVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2
+                  min_value: 1
+                  strictly: false
+          - name: PopulationVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1177975
+                  strictly: false
+          - name: StringencyIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3571559
+                  strictly: false
+          - name: StringencyIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3413230
+                  strictly: false
+          - name: StringencyIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3492392
+                  strictly: false
+          - name: StringencyIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3451480
+                  strictly: false
+          - name: GovernmentResponseIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3702099
+                  strictly: false
+          - name: GovernmentResponseIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3609978
+                  strictly: false
+          - name: GovernmentResponseIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3656040
+                  strictly: false
+          - name: GovernmentResponseIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3621315
+                  strictly: false
+          - name: ContainmentHealthIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3858811
+                  strictly: false
+          - name: ContainmentHealthIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3753533
+                  strictly: false
+          - name: ContainmentHealthIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3806172
+                  strictly: false
+          - name: ContainmentHealthIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3767911
+                  strictly: false
+          - name: EconomicSupportIndex
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2605150
+                  strictly: false
+      - name: OxGC_2022
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 147
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["CountryName","CountryCode","RegionName","RegionCode","Jurisdiction","Date","C1E_School_closing","C1E_Flag","C1NV_School_closing","C1NV_Flag","C1V_School_closing","C1V_Flag","C1M_School_closing","C1M_Flag","C1_Notes","C2E_Workplace_closing","C2E_Flag","C2NV_Workplace_closing","C2NV_Flag","C2V_Workplace_closing","C2V_Flag","C2M_Workplace_closing","C2M_Flag","C2_Notes","C3E_Cancel_public_events","C3E_Flag","C3NV_Cancel_public_events","C3NV_Flag","C3V_Cancel_public_events","C3V_Flag","C3M_Cancel_public_events","C3M_Flag","C3_Notes","C4E_Restrictions_on_gatherings","C4E_Flag","C4NV_Restrictions_on_gatherings","C4NV_Flag","C4V_Restrictions_on_gatherings","C4V_Flag","C4M_Restrictions_on_gatherings","C4M_Flag","C4_Notes","C5E_Close_public_transport","C5E_Flag","C5NV_Close_public_transport","C5NV_Flag","C5V_Close_public_transport","C5V_Flag","C5M_Close_public_transport","C5M_Flag","C5_Notes","C6E_Stay_at_home_requirements","C6E_Flag","C6NV_Stay_at_home_requirements","C6NV_Flag","C6V_Stay_at_home_requirements","C6V_Flag","C6M_Stay_at_home_requirements","C6M_Flag","C6_Notes","C7E_Restrictions_on_internal_movement","C7E_Flag","C7NV_Restrictions_on_internal_movement","C7NV_Flag","C7V_Restrictions_on_internal_movement","C7V_Flag","C7M_Restrictions_on_internal_movement","C7M_Flag","C7_Notes","C8E_International_travel_controls","C8NV_International_travel_controls","C8V_International_travel_controls","C8EV_International_travel_controls","C8_Notes","E1_Income_support","E1_Flag","E1_Notes","E2_Debt_contract_relief","E2_Notes","E3_Fiscal_measures","E3_Notes","E4_International_support","E4_Notes","H1_Public_information_campaigns","H1_Flag","H1_Notes","H2_Testing_policy","H2_Notes","H3_Contact_tracing","H3_Notes","H4_Emergency_investment_in_healthcare","H4_Notes","H5_Investment_in_vaccines","H5_Notes","H6E_Facial_Coverings","H6E_Flag","H6NV_Facial_Coverings","H6NV_Flag","H6V_Facial_Coverings","H6V_Flag","H6M_Facial_Coverings","H6M_Flag","H6_Notes","H7_Vaccination_policy","H7_Flag","H7_Notes","H8E_Protection_of_elderly_people","H8E_Flag","H8NV_Protection_of_elderly_people","H8NV_Flag","H8V_Protection_of_elderly_people","H8V_Flag","H8M_Protection_of_elderly_people","H8M_Flag","H8_Notes","M1_Notes","V1_Vaccine_Prioritisation__summary_","V1_Notes","V2A_Vaccine_Availability__summary_","V2_Notes","V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_","V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_","V2D_Medically__clinically_vulnerable__Non_elderly_","V2E_Education","V2F_Frontline_workers___non_healthcare_","V2G_Frontline_workers___healthcare_","V3_Vaccine_Financial_Support__summary_","V3_Notes","V4_Mandatory_Vaccination__summary_","V4_Notes","ConfirmedCases","ConfirmedDeaths","MajorityVaccinated","PopulationVaccinated","StringencyIndex_NonVaccinated","StringencyIndex_Vaccinated","StringencyIndex_SimpleAverage","StringencyIndex_WeightedAverage","GovernmentResponseIndex_NonVaccinated","GovernmentResponseIndex_Vaccinated","GovernmentResponseIndex_SimpleAverage","GovernmentResponseIndex_WeightedAverage","ContainmentHealthIndex_NonVaccinated","ContainmentHealthIndex_Vaccinated","ContainmentHealthIndex_SimpleAverage","ContainmentHealthIndex_WeightedAverage","EconomicSupportIndex"]
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 67525
+        columns:
+          - name: CountryName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 28
+                  min_value: 4
+                  strictly: false
+          - name: CountryCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3
+                  min_value: 3
+                  strictly: false
+          - name: RegionName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: RegionCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: Jurisdiction
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 9
+                  strictly: false
+          - name: Date
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1365400628530
+                  strictly: false
+          - name: C1E_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 28546
+                  strictly: false
+          - name: C1E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 18333
+                  strictly: false
+          - name: C1NV_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 6910
+                  strictly: false
+          - name: C1NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2811
+                  strictly: false
+          - name: C1V_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2580
+                  strictly: false
+          - name: C1V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1866
+                  strictly: false
+          - name: C1M_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 32786
+                  strictly: false
+          - name: C1M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 20619
+                  strictly: false
+          - name: C1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7223
+                  min_value: 1
+                  strictly: false
+          - name: C2E_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 25327
+                  strictly: false
+          - name: C2E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 15941
+                  strictly: false
+          - name: C2NV_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 32049
+                  strictly: false
+          - name: C2NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 13713
+                  strictly: false
+          - name: C2V_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 11260
+                  strictly: false
+          - name: C2V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 9342
+                  strictly: false
+          - name: C2M_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 45631
+                  strictly: false
+          - name: C2M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 27863
+                  strictly: false
+          - name: C2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 14554
+                  min_value: 1
+                  strictly: false
+          - name: C3E_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 27259
+                  strictly: false
+          - name: C3E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 16799
+                  strictly: false
+          - name: C3NV_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 23963
+                  strictly: false
+          - name: C3NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 11086
+                  strictly: false
+          - name: C3V_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7206
+                  strictly: false
+          - name: C3V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5894
+                  strictly: false
+          - name: C3M_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 40848
+                  strictly: false
+          - name: C3M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 25019
+                  strictly: false
+          - name: C3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7898
+                  min_value: 9
+                  strictly: false
+          - name: C4E_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 54100
+                  strictly: false
+          - name: C4E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 15818
+                  strictly: false
+          - name: C4NV_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 15127
+                  strictly: false
+          - name: C4NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 4943
+                  strictly: false
+          - name: C4V_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5067
+                  strictly: false
+          - name: C4V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1988
+                  strictly: false
+          - name: C4M_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 61753
+                  strictly: false
+          - name: C4M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 18344
+                  strictly: false
+          - name: C4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7921
+                  min_value: 1
+                  strictly: false
+          - name: C5E_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 8732
+                  strictly: false
+          - name: C5E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5776
+                  strictly: false
+          - name: C5NV_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7495
+                  strictly: false
+          - name: C5NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3356
+                  strictly: false
+          - name: C5V_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1044
+                  strictly: false
+          - name: C5V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 757
+                  strictly: false
+          - name: C5M_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 12090
+                  strictly: false
+          - name: C5M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7504
+                  strictly: false
+          - name: C5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4781
+                  min_value: 7
+                  strictly: false
+          - name: C6E_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 14791
+                  strictly: false
+          - name: C6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 5933
+                  strictly: false
+          - name: C6NV_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1766
+                  strictly: false
+          - name: C6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 922
+                  strictly: false
+          - name: C6V_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 145
+                  strictly: false
+          - name: C6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 20
+                  strictly: false
+          - name: C6M_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 15630
+                  strictly: false
+          - name: C6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 6257
+                  strictly: false
+          - name: C6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8112
+                  min_value: 9
+                  strictly: false
+          - name: C7E_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 10696
+                  strictly: false
+          - name: C7E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3450
+                  strictly: false
+          - name: C7NV_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 8640
+                  strictly: false
+          - name: C7NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3566
+                  strictly: false
+          - name: C7V_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 774
+                  strictly: false
+          - name: C7V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 423
+                  strictly: false
+          - name: C7M_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 13698
+                  strictly: false
+          - name: C7M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 4376
+                  strictly: false
+          - name: C7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8119
+                  min_value: 7
+                  strictly: false
+          - name: C8E_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 26824
+                  strictly: false
+          - name: C8NV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 63843
+                  strictly: false
+          - name: C8V_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 33988
+                  strictly: false
+          - name: C8EV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 60812
+                  strictly: false
+          - name: C8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7459
+                  min_value: 9
+                  strictly: false
+          - name: E1_Income_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 29423
+                  strictly: false
+          - name: E1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 16223
+                  strictly: false
+          - name: E1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7541
+                  min_value: 1
+                  strictly: false
+          - name: E2_Debt_contract_relief
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 26192
+                  strictly: false
+          - name: E2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 12816
+                  min_value: 7
+                  strictly: false
+          - name: E3_Fiscal_measures
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: E3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: E4_International_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: E4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H1_Public_information_campaigns
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 123469
+                  strictly: false
+          - name: H1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 65600
+                  strictly: false
+          - name: H1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2716
+                  min_value: 9
+                  strictly: false
+          - name: H2_Testing_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 168179
+                  strictly: false
+          - name: H2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4575
+                  min_value: 9
+                  strictly: false
+          - name: H3_Contact_tracing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 58687
+                  strictly: false
+          - name: H3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5817
+                  min_value: 7
+                  strictly: false
+          - name: H4_Emergency_investment_in_healthcare
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H5_Investment_in_vaccines
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7561971424
+                  strictly: false
+          - name: H5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2670
+                  min_value: 1
+                  strictly: false
+          - name: H6E_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 139101
+                  strictly: false
+          - name: H6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 55047
+                  strictly: false
+          - name: H6NV_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3410
+                  strictly: false
+          - name: H6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1009
+                  strictly: false
+          - name: H6V_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2105
+                  strictly: false
+          - name: H6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1009
+                  strictly: false
+          - name: H6M_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 142300
+                  strictly: false
+          - name: H6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 56056
+                  strictly: false
+          - name: H6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4976
+                  min_value: 9
+                  strictly: false
+          - name: H7_Vaccination_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 332190
+                  strictly: false
+          - name: H7_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 67160
+                  strictly: false
+          - name: H7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5819
+                  min_value: 9
+                  strictly: false
+          - name: H8E_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 38012
+                  strictly: false
+          - name: H8E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 23590
+                  strictly: false
+          - name: H8NV_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7972
+                  strictly: false
+          - name: H8NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2034
+                  strictly: false
+          - name: H8V_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3709
+                  strictly: false
+          - name: H8V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1253
+                  strictly: false
+          - name: H8M_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 42053
+                  strictly: false
+          - name: H8M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 24843
+                  strictly: false
+          - name: H8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 8846
+                  min_value: 7
+                  strictly: false
+          - name: M1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 20924
+                  min_value: 3
+                  strictly: false
+          - name: V1_Vaccine_Prioritisation__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 132834
+                  strictly: false
+          - name: V1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6345
+                  min_value: 7
+                  strictly: false
+          - name: V2A_Vaccine_Availability__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 184445
+                  strictly: false
+          - name: V2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 16290
+                  min_value: 4
+                  strictly: false
+          - name: V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2D_Medically__clinically_vulnerable__Non_elderly_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 130291
+                  strictly: false
+          - name: V2E_Education
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 127663
+                  strictly: false
+          - name: V2F_Frontline_workers___non_healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 129483
+                  strictly: false
+          - name: V2G_Frontline_workers___healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 128979
+                  strictly: false
+          - name: V3_Vaccine_Financial_Support__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 334728
+                  strictly: false
+          - name: V3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6345
+                  min_value: 2
+                  strictly: false
+          - name: V4_Mandatory_Vaccination__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 19261
+                  strictly: false
+          - name: V4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 17547
+                  min_value: 1
+                  strictly: false
+          - name: ConfirmedCases
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 195896792731
+                  strictly: false
+          - name: ConfirmedDeaths
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2292789126
+                  strictly: false
+          - name: MajorityVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2
+                  min_value: 1
+                  strictly: false
+          - name: PopulationVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3355547
+                  strictly: false
+          - name: StringencyIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1956877
+                  strictly: false
+          - name: StringencyIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1579224
+                  strictly: false
+          - name: StringencyIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1768055
+                  strictly: false
+          - name: StringencyIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1717557
+                  strictly: false
+          - name: GovernmentResponseIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2526862
+                  strictly: false
+          - name: GovernmentResponseIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2303674
+                  strictly: false
+          - name: GovernmentResponseIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2415267
+                  strictly: false
+          - name: GovernmentResponseIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2375223
+                  strictly: false
+          - name: ContainmentHealthIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2699652
+                  strictly: false
+          - name: ContainmentHealthIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2444579
+                  strictly: false
+          - name: ContainmentHealthIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2572119
+                  strictly: false
+          - name: ContainmentHealthIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2526346
+                  strictly: false
+          - name: EconomicSupportIndex
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1317350
+                  strictly: false
+      - name: OxGC_2020
+        description: table_test
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 147
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: ["CountryName","CountryCode","RegionName","RegionCode","Jurisdiction","Date","C1E_School_closing","C1E_Flag","C1NV_School_closing","C1NV_Flag","C1V_School_closing","C1V_Flag","C1M_School_closing","C1M_Flag","C1_Notes","C2E_Workplace_closing","C2E_Flag","C2NV_Workplace_closing","C2NV_Flag","C2V_Workplace_closing","C2V_Flag","C2M_Workplace_closing","C2M_Flag","C2_Notes","C3E_Cancel_public_events","C3E_Flag","C3NV_Cancel_public_events","C3NV_Flag","C3V_Cancel_public_events","C3V_Flag","C3M_Cancel_public_events","C3M_Flag","C3_Notes","C4E_Restrictions_on_gatherings","C4E_Flag","C4NV_Restrictions_on_gatherings","C4NV_Flag","C4V_Restrictions_on_gatherings","C4V_Flag","C4M_Restrictions_on_gatherings","C4M_Flag","C4_Notes","C5E_Close_public_transport","C5E_Flag","C5NV_Close_public_transport","C5NV_Flag","C5V_Close_public_transport","C5V_Flag","C5M_Close_public_transport","C5M_Flag","C5_Notes","C6E_Stay_at_home_requirements","C6E_Flag","C6NV_Stay_at_home_requirements","C6NV_Flag","C6V_Stay_at_home_requirements","C6V_Flag","C6M_Stay_at_home_requirements","C6M_Flag","C6_Notes","C7E_Restrictions_on_internal_movement","C7E_Flag","C7NV_Restrictions_on_internal_movement","C7NV_Flag","C7V_Restrictions_on_internal_movement","C7V_Flag","C7M_Restrictions_on_internal_movement","C7M_Flag","C7_Notes","C8E_International_travel_controls","C8NV_International_travel_controls","C8V_International_travel_controls","C8EV_International_travel_controls","C8_Notes","E1_Income_support","E1_Flag","E1_Notes","E2_Debt_contract_relief","E2_Notes","E3_Fiscal_measures","E3_Notes","E4_International_support","E4_Notes","H1_Public_information_campaigns","H1_Flag","H1_Notes","H2_Testing_policy","H2_Notes","H3_Contact_tracing","H3_Notes","H4_Emergency_investment_in_healthcare","H4_Notes","H5_Investment_in_vaccines","H5_Notes","H6E_Facial_Coverings","H6E_Flag","H6NV_Facial_Coverings","H6NV_Flag","H6V_Facial_Coverings","H6V_Flag","H6M_Facial_Coverings","H6M_Flag","H6_Notes","H7_Vaccination_policy","H7_Flag","H7_Notes","H8E_Protection_of_elderly_people","H8E_Flag","H8NV_Protection_of_elderly_people","H8NV_Flag","H8V_Protection_of_elderly_people","H8V_Flag","H8M_Protection_of_elderly_people","H8M_Flag","H8_Notes","M1_Notes","V1_Vaccine_Prioritisation__summary_","V1_Notes","V2A_Vaccine_Availability__summary_","V2_Notes","V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_","V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_","V2D_Medically__clinically_vulnerable__Non_elderly_","V2E_Education","V2F_Frontline_workers___non_healthcare_","V2G_Frontline_workers___healthcare_","V3_Vaccine_Financial_Support__summary_","V3_Notes","V4_Mandatory_Vaccination__summary_","V4_Notes","ConfirmedCases","ConfirmedDeaths","MajorityVaccinated","PopulationVaccinated","StringencyIndex_NonVaccinated","StringencyIndex_Vaccinated","StringencyIndex_SimpleAverage","StringencyIndex_WeightedAverage","GovernmentResponseIndex_NonVaccinated","GovernmentResponseIndex_Vaccinated","GovernmentResponseIndex_SimpleAverage","GovernmentResponseIndex_WeightedAverage","ContainmentHealthIndex_NonVaccinated","ContainmentHealthIndex_Vaccinated","ContainmentHealthIndex_SimpleAverage","ContainmentHealthIndex_WeightedAverage","EconomicSupportIndex"]
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 67710
+        columns:
+          - name: CountryName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 28
+                  min_value: 4
+                  strictly: false
+          - name: CountryCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3
+                  min_value: 3
+                  strictly: false
+          - name: RegionName
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: RegionCode
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: Jurisdiction
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 9
+                  strictly: false
+          - name: Date
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1367787170895
+                  strictly: false
+          - name: C1E_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 117437
+                  strictly: false
+          - name: C1E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 44878
+                  strictly: false
+          - name: C1NV_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C1NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C1V_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C1V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C1M_School_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 117437
+                  strictly: false
+          - name: C1M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 44878
+                  strictly: false
+          - name: C1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 7403
+                  min_value: 9
+                  strictly: false
+          - name: C2E_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 88802
+                  strictly: false
+          - name: C2E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 35957
+                  strictly: false
+          - name: C2NV_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C2NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C2V_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C2V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C2M_Workplace_closing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 88802
+                  strictly: false
+          - name: C2M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 35957
+                  strictly: false
+          - name: C2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5844
+                  min_value: 9
+                  strictly: false
+          - name: C3E_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 87654
+                  strictly: false
+          - name: C3E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 44489
+                  strictly: false
+          - name: C3NV_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C3NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C3V_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C3V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C3M_Cancel_public_events
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 87654
+                  strictly: false
+          - name: C3M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 44489
+                  strictly: false
+          - name: C3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4627
+                  min_value: 7
+                  strictly: false
+          - name: C4E_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 155722
+                  strictly: false
+          - name: C4E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 39812
+                  strictly: false
+          - name: C4NV_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C4NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C4V_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C4V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C4M_Restrictions_on_gatherings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 155722
+                  strictly: false
+          - name: C4M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 39812
+                  strictly: false
+          - name: C4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4627
+                  min_value: 2
+                  strictly: false
+          - name: C5E_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 37255
+                  strictly: false
+          - name: C5E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 19373
+                  strictly: false
+          - name: C5NV_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C5NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C5V_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C5V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C5M_Close_public_transport
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 37255
+                  strictly: false
+          - name: C5M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 19373
+                  strictly: false
+          - name: C5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4166
+                  min_value: 1
+                  strictly: false
+          - name: C6E_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 63106
+                  strictly: false
+          - name: C6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 27946
+                  strictly: false
+          - name: C6NV_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C6V_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C6M_Stay_at_home_requirements
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 63106
+                  strictly: false
+          - name: C6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 27946
+                  strictly: false
+          - name: C6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4627
+                  min_value: 1
+                  strictly: false
+          - name: C7E_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 56606
+                  strictly: false
+          - name: C7E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 19249
+                  strictly: false
+          - name: C7NV_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C7NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C7V_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C7V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C7M_Restrictions_on_internal_movement
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 56606
+                  strictly: false
+          - name: C7M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 19249
+                  strictly: false
+          - name: C7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4627
+                  min_value: 8
+                  strictly: false
+          - name: C8E_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 167580
+                  strictly: false
+          - name: C8NV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C8V_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: C8EV_International_travel_controls
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 167580
+                  strictly: false
+          - name: C8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4715
+                  min_value: 1
+                  strictly: false
+          - name: E1_Income_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 50511
+                  strictly: false
+          - name: E1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 20218
+                  strictly: false
+          - name: E1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4579
+                  min_value: 9
+                  strictly: false
+          - name: E2_Debt_contract_relief
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 59848
+                  strictly: false
+          - name: E2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6965
+                  min_value: 9
+                  strictly: false
+          - name: E3_Fiscal_measures
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 12637965248002
+                  strictly: false
+          - name: E3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4669
+                  min_value: 7
+                  strictly: false
+          - name: E4_International_support
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 901004154332
+                  strictly: false
+          - name: E4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2328
+                  min_value: 4
+                  strictly: false
+          - name: H1_Public_information_campaigns
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 113795
+                  strictly: false
+          - name: H1_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 58478
+                  strictly: false
+          - name: H1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2858
+                  min_value: 2
+                  strictly: false
+          - name: H2_Testing_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 97658
+                  strictly: false
+          - name: H2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4205
+                  min_value: 9
+                  strictly: false
+          - name: H3_Contact_tracing
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 82062
+                  strictly: false
+          - name: H3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6339
+                  min_value: 2
+                  strictly: false
+          - name: H4_Emergency_investment_in_healthcare
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 650901490154
+                  strictly: false
+          - name: H4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2654
+                  min_value: 4
+                  strictly: false
+          - name: H5_Investment_in_vaccines
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 48227938440
+                  strictly: false
+          - name: H5_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2945
+                  min_value: 4
+                  strictly: false
+          - name: H6E_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 116388
+                  strictly: false
+          - name: H6E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 37335
+                  strictly: false
+          - name: H6NV_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H6NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H6V_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H6V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H6M_Facial_Coverings
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 116388
+                  strictly: false
+          - name: H6M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 37335
+                  strictly: false
+          - name: H6_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3885
+                  min_value: 9
+                  strictly: false
+          - name: H7_Vaccination_policy
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 683
+                  strictly: false
+          - name: H7_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 404
+                  strictly: false
+          - name: H7_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 6174
+                  min_value: 4
+                  strictly: false
+          - name: H8E_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 79105
+                  strictly: false
+          - name: H8E_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 32852
+                  strictly: false
+          - name: H8NV_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H8NV_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H8V_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H8V_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+          - name: H8M_Protection_of_elderly_people
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 79105
+                  strictly: false
+          - name: H8M_Flag
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 32852
+                  strictly: false
+          - name: H8_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4622
+                  min_value: 4
+                  strictly: false
+          - name: M1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2698
+                  min_value: 1
+                  strictly: false
+          - name: V1_Vaccine_Prioritisation__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 1214
+                  strictly: false
+          - name: V1_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 5919
+                  min_value: 30
+                  strictly: false
+          - name: V2A_Vaccine_Availability__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 471
+                  strictly: false
+          - name: V2_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 4516
+                  min_value: 10
+                  strictly: false
+          - name: V2B_Vaccine_age_eligibility_availability_age_floor__general_population_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2C_Vaccine_age_eligibility_availability_age_floor__at_risk_summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 9
+                  min_value: 7
+                  strictly: false
+          - name: V2D_Medically__clinically_vulnerable__Non_elderly_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 157
+                  strictly: false
+          - name: V2E_Education
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 75
+                  strictly: false
+          - name: V2F_Frontline_workers___non_healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 185
+                  strictly: false
+          - name: V2G_Frontline_workers___healthcare_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 644
+                  strictly: false
+          - name: V3_Vaccine_Financial_Support__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2775
+                  strictly: false
+          - name: V3_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3673
+                  min_value: 1
+                  strictly: false
+          - name: V4_Mandatory_Vaccination__summary_
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 0
+                  strictly: false
+          - name: V4_Notes
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 3668
+                  min_value: 3
+                  strictly: false
+          - name: ConfirmedCases
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 7614657246
+                  strictly: false
+          - name: ConfirmedDeaths
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: number
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 237010964
+                  strictly: false
+          - name: MajorityVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: varchar
+              - dbt_expectations.expect_column_value_lengths_to_be_between:
+                  max_value: 2
+                  min_value: 2
+                  strictly: false
+          - name: PopulationVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 0
+                  strictly: false
+          - name: StringencyIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3402308
+                  strictly: false
+          - name: StringencyIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3402308
+                  strictly: false
+          - name: StringencyIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3402308
+                  strictly: false
+          - name: StringencyIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3362350
+                  strictly: false
+          - name: GovernmentResponseIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3030778
+                  strictly: false
+          - name: GovernmentResponseIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3030778
+                  strictly: false
+          - name: GovernmentResponseIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3030778
+                  strictly: false
+          - name: GovernmentResponseIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3003242
+                  strictly: false
+          - name: ContainmentHealthIndex_NonVaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3098141
+                  strictly: false
+          - name: ContainmentHealthIndex_Vaccinated
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3098141
+                  strictly: false
+          - name: ContainmentHealthIndex_SimpleAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3098141
+                  strictly: false
+          - name: ContainmentHealthIndex_WeightedAverage
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 3068108
+                  strictly: false
+          - name: EconomicSupportIndex
+            description: column_test
+            tests:
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: float
+              - dbt_expectations.expect_column_sum_to_be_between:
+                  max_value: 2559338
+                  strictly: false

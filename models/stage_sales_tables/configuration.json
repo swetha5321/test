@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sfdatamigration",
+  "private_key_id": "91d4f366b4dd641ab834c4c6f6c32c612ded6ea3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/QArfM23wEERv\n7Sp2qRSuXurW7/e3v5uj4L4gP4oaZ96HWbvC9hQQmKlywI4FvPCiPPy/Vqwh16Uf\nMfw6qpXwSKt+zj9bVoJH5SwGKsFVdV9io+wzIsbL1G1h/DtVSniFoGHqFFfHFCcV\nkfSHAVcaHMRh7IZM7h/RwkBPyGc7uec4RG4HKQzACYlSsGwIWrWDOn+4QKLTrBvs\nTwypOGqR1Hy8Nq+WAZfiXXgzOf08dx+vNf7Ie4px7XDWE3rwOGtX3MMxTi/+ANcA\nAWAsezjX1ny5A//+ZoyZ8NuGCPqryOLbo2QDNQZ68TlIYgHkDNIr7N3ZY+8lMWxa\nNtvYB/i7AgMBAAECggEAF+tGENFJVCdsr8TtNScDZ6WGYHhltmz35cCTdswLlS7d\ndXcjFQiazNKTCr+LY6tUOy4+fB22bIsgYyzou1ufYgxsqnDYGq/QnnZKkcDiKjKC\nSf9vaJvWWiLIxWL69rlYJno/FLwTmFnsY3W8K/BeeO0VIJwo1dFIWH8fdPr+8kif\nzBfpy6XuFn6eTPaMHmBjoaIny7XIhhxSsUERQo7yhB5Nsy8vMerJ7OCEgsBcQx/K\nmYYHB6t+xGFVBNdm0xbFkH75od569FqcL9KmIo7QYFJaNydT01BPQzs/XF1Rlyjr\nSU2DeX7EUicYsne0IkPRetWEGYsJ22zjXtXDZ55seQKBgQDy78pDrpgUp3nZ7jVm\nMpW6vpkpUNimdkjI9e1trFBBHfDoWSpXNWB0sAkvw9lOWSrjyV2R6FHGU/MtLDn+\nRd9nwcXF+6mCJVMU6AqsT9Ur9gEtqCDM3Zehkqldcl1g/8LJrpMobMothNwt59N0\nyVQVFl5DlZ+monG8W0F8PgHz+QKBgQDJiL9xfhHkE/qt/Abtgcy5nZyHpY6dD6N7\nhA+eZ/tyJSQYxIeQA/5LW1r4ZHs/CyYzdINYaXZB3UqRLY+ZulX+yJ+Q+hwmdQtA\nnrURbdYKqQ92l0f1IGXlL8W3lq+9cyoEjjAs4GqCeuMHnJLnrjxgnVeKiYFet+o/\npPj1Le6XUwKBgFbmZbDOPIJu4gyNxDY5dAvn7/uyer0Y5LJWHkcz80VHw4wpkRa+\n9jDnY3HdmdcH2GrA9iKiOtY542vOPTRypBaGXwuSGTF/zndVBbRbnkJqbkN5t7nw\nrjPStZjCtxpigrgIJYW5XJzpwKT/H0nQVq5wYOnGFOTTiOG6tvMNbz9pAoGBAMCq\nX8MjL/1ocEV2ZDUY2tw0Zllzl7RlJ/hEFx5r8AF+qlSXRbYTaz8ldgFzJjPt97ZH\nU+3o3Ko44TmLYfYoImAx8gIKaXEGghxj3VxtMav9VZAdLiiUsXT6R72sbBPkji3O\ntRWh8ZEN5A75y6N7ebMvmGoT7L7dei8gCvVx1N+LAoGAPBu4N865y7LHwWxez2bD\n3wU/6dwAYt8a0h9AcUg6HujJxGzbgCzJb5BitgJL7ExkvlPXEK224/P4z99vxB5R\nNJpS/XXQ/l7tbleQ+1Y0aAM2MHrv0MZiYPnlgTE9GqCsLraIDmn+NWIWvnK/oUbT\nOvsmwiCW+jwY02xdRBcouJw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sfdatamigration@sfdatamigration.iam.gserviceaccount.com",
+  "client_id": "105032577965461862418",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sfdatamigration%40sfdatamigration.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
